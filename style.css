@@ -503,3 +503,24 @@ a {
   margin: 0 auto;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
 }
+.instagram-section {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.instagram-container h2 {
+  margin-bottom: 10px;
+}
+
+.instagram-icon {
+  width: 60px;
+  height: 60px;
+  margin-top: 15px;
+  filter: invert(1); /* makes it white to match dark theme */
+  transition: 0.3s ease;
+}
+
+.instagram-icon:hover {
+  transform: scale(1.15);
+  opacity: 0.8;
+}
