@@ -521,3 +521,27 @@ a {
   transform: scale(1.15);
   opacity: 1;
 }
+.youtube-section {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.youtube-center {
+  margin-top: 1.5rem;
+}
+
+.youtube-icon {
+  width: 120px;
+  height: auto;
+  display: inline-block;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  opacity: 0.95;
+}
+
+.youtube-icon:hover {
+  transform: scale(1.06);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
+  opacity: 1;
+}
