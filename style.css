@@ -508,19 +508,16 @@ a {
   padding: 60px 0;
 }
 
-.instagram-container h2 {
-  margin-bottom: 10px;
-}
-
 .instagram-icon {
-  width: 60px;
-  height: 60px;
-  margin-top: 15px;
-  filter: invert(1); /* makes it white to match dark theme */
+  width: 80px;     /* Set a normal icon size */
+  height: 80px;
+  margin-top: 20px;
+  filter: invert(1);
+  opacity: 0.9;
   transition: 0.3s ease;
 }
 
 .instagram-icon:hover {
   transform: scale(1.15);
-  opacity: 0.8;
+  opacity: 1;
 }
