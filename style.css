@@ -297,3 +297,6 @@ a {
   justify-self: center !important;
   text-align: center;
 }
+#music-section p:first-of-type {
+    display: none;
+}
