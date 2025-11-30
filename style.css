@@ -304,6 +304,7 @@ a {
 #music-section p:first-of-type {
     display: none;
 }
+/* Center the hero image */
 .hero-image {
   display: flex;
   justify-content: center;
