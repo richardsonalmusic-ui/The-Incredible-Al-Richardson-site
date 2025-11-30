@@ -262,3 +262,30 @@ a {
     display: block;
   }
 }
+/* --- Contact section layout fixes --- */
+
+#contact img {
+  display: block;
+  margin: 0 auto 1.5rem;   /* centers the photo and adds space under it */
+  border-radius: 1rem;     /* optional: soften corners, matches rest of site */
+}
+#contact .contact-form {
+  max-width: 540px;
+  margin: 0 auto;          /* center the form */
+}
+
+#contact .contact-form label {
+  display: block;
+  margin-top: 1rem;        /* space between fields */
+}
+
+#contact .contact-form label:first-of-type {
+  margin-top: 0;
+}
+
+#contact .contact-form input,
+#contact .contact-form textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;  /* inputs use full width and don’t squash */
+}
