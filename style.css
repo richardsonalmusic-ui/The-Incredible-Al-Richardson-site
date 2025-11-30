@@ -414,3 +414,35 @@ a {
     max-width: 100%;
   }
 }
+/* --- Discography & Lyrics Styling --- */
+
+.release-block {
+  margin-top: 2rem;
+}
+
+.release-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.release-meta {
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+.lyrics-heading {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  color: #dbe98f; /* olive highlight */
+}
+
+.lyrics-text {
+  white-space: pre-wrap;
+  font-family: inherit;
+  line-height: 1.6;
+  background: rgba(255,255,255,0.03);
+  padding: 1.2rem;
+  border-radius: 8px;
+  border-left: 3px solid #a3c756;
+  margin-top: 1rem;
+}
