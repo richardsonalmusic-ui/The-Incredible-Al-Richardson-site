@@ -293,3 +293,7 @@ a {
   max-width: 720px;
   margin: 0 auto;
 }
+.hero-image {
+  justify-self: center !important;
+  text-align: center;
+}
