@@ -289,3 +289,7 @@ a {
   width: 100%;
   box-sizing: border-box;  /* inputs use full width and don’t squash */
 }
+#contact .container {
+  max-width: 720px;
+  margin: 0 auto;
+}
