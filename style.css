@@ -543,3 +543,27 @@ a {
   text-align: center;
   padding: 60px 0;
 }
+.instagram-container {
+  text-align: center;
+}
+
+.instagram-icon-link {
+  display: inline-block;
+}
+
+.instagram-icon {
+  display: block;
+  margin: 20px auto 0 auto;
+  width: 150px;
+  max-width: 80%;
+}
+.youtube-container {
+  text-align: center;
+}
+
+.youtube-button {
+  display: block;
+  margin: 20px auto 0 auto;
+  width: 220px;      /* adjust size as needed */
+  max-width: 80%;
+}
