@@ -247,9 +247,9 @@
 <body>
 
   <!-- Splash screen -->
-  <div id="splash-screen">
-    <img src="splash-logo.png" alt="The Incredible Al Richardson logo">
-  </div>
+<div id="splash-screen">
+    <img src="IMG_1057.png" alt="The Incredible Al Richardson logo">
+</div>
   
   <header class="site-header">
     <div class="container nav-container">
@@ -828,32 +828,38 @@ Only now I feel free
   </footer>
 
  <script>
-  // Splash screen: fade out after page loads
+  // Run everything after the page has fully loaded
   window.addEventListener('load', () => {
+    // --- SPLASH SCREEN FADE OUT ---
     const splash = document.getElementById('splash-screen');
-    if (!splash) return;
+    if (splash) {
+      const delay = 1200; // how long the logo stays fully visible (ms)
+      setTimeout(() => {
+        splash.classList.add('splash-hide');
+      }, delay);
+    }
 
-    const delay = 1200; // how long the logo stays fully visible (ms)
+    // --- MOBILE NAV TOGGLE ---
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
 
-    setTimeout(() => {
-      splash.classList.add('splash-hide');
-    }, delay);
-  });
+    if (navToggle && mainNav) {
+      navToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('open');
+      });
+    }
 
-  const navToggle = document.getElementById('navToggle');
-  const mainNav = document.getElementById('mainNav');
+    // --- SMOOTH SCROLL FOR IN-PAGE LINKS ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        if (!target) return;
 
-  navToggle.addEventListener('click', () => {
-    mainNav.classList.toggle('open');
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
-      if (target) {
         e.preventDefault();
-        const topOffset = document.querySelector('.site-header').offsetHeight;
+
+        const header = document.querySelector('.site-header');
+        const topOffset = header ? header.offsetHeight : 0;
         const elementPosition = target.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition - topOffset;
 
@@ -862,12 +868,18 @@ Only now I feel free
           behavior: 'smooth'
         });
 
-        mainNav.classList.remove('open');
-      }
+        if (mainNav) {
+          mainNav.classList.remove('open');
+        }
+      });
     });
-  });
 
-  document.getElementById('year').textContent = new Date().getFullYear();
+    // --- FOOTER YEAR ---
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+  });
 </script>
 </body>
 </html>
