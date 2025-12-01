@@ -880,6 +880,31 @@ Only now I feel free
       yearEl.textContent = new Date().getFullYear();
     }
   });
+   document.addEventListener('copy', function (e) {
+    const selection = window.getSelection();
+    if (!selection) return;
+
+    const selectedText = selection.toString();
+    if (!selectedText.trim()) return;
+
+    // Find the nearest heading to the lyrics block
+    const lyricsBlock = selection.anchorNode?.parentElement?.closest('.lyrics-text');
+    if (!lyricsBlock) return;
+
+    const heading = lyricsBlock.previousElementSibling;
+    if (!heading || !heading.classList.contains('lyrics-heading')) return;
+
+    // Extract the song title from the H3 text
+    // Expected format: Lyrics — “Song Name”
+    const match = heading.textContent.match(/“([^”]+)”/);
+    const songName = match ? match[1] : "Unknown Song";
+
+    const attribution = ` — From the song “${songName}”, by The Incredible Al Richardson`;
+
+    // Override clipboard data
+    e.preventDefault();
+    e.clipboardData.setData('text/plain', selectedText + attribution);
+});
 </script>
 </body>
 </html>
