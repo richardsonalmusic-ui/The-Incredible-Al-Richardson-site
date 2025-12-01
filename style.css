@@ -478,28 +478,27 @@ a {
 /* ---- SOCIAL ICONS (Hero Section) ---- */
 .social-icons {
   display: flex;
-  gap: 14px;
-  margin-top: 18px;
+  gap: 22px;                /* MORE SPACE BETWEEN ICONS */
+  margin-top: 28px;         /* MORE SPACE ABOVE (gap before photo) */
 }
 
 .social-icons a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  background: #000;          /* black circle */
-  border-radius: 50%;        /* makes it round */
+  width: 50px;              /* BIGGER ICON BUTTON */
+  height: 50px;             /* BIGGER ICON BUTTON */
+  background: #000;         /* black circle */
+  border-radius: 50%;
   text-decoration: none;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .social-icons a i {
-  color: #fff;               /* white icon */
-  font-size: 20px;
+  color: #fff;              /* white icon */
+  font-size: 26px;          /* BIGGER ICON SYMBOL */
 }
 
-/* Hover effect */
 .social-icons a:hover {
   transform: scale(1.12);
   opacity: 0.8;
