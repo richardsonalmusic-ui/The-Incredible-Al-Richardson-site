@@ -463,10 +463,11 @@ a {
 }
 
 #splash-screen img {
-  width: 180px;
-  max-width: 60vw;
-  height: auto;
+    width: 300px;   /* was 180px — now much bigger */
+    max-width: 80vw; /* optional: allows bigger on mobile */
+    height: auto;
 }
+
 
 /* Class added by JS when we want to hide it */
 #splash-screen.splash-hide {
