@@ -827,35 +827,47 @@ Only now I feel free
     </div>
   </footer>
 
-  <script>
-    const navToggle = document.getElementById('navToggle');
-    const mainNav = document.getElementById('mainNav');
+ <script>
+  // Splash screen: fade out after page loads
+  window.addEventListener('load', () => {
+    const splash = document.getElementById('splash-screen');
+    if (!splash) return;
 
-    navToggle.addEventListener('click', () => {
-      mainNav.classList.toggle('open');
+    const delay = 1200; // how long the logo stays fully visible (ms)
+
+    setTimeout(() => {
+      splash.classList.add('splash-hide');
+    }, delay);
+  });
+
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('open');
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        const topOffset = document.querySelector('.site-header').offsetHeight;
+        const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - topOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+
+        mainNav.classList.remove('open');
+      }
     });
+  });
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href').substring(1);
-        const target = document.getElementById(targetId);
-        if (target) {
-          e.preventDefault();
-          const topOffset = document.querySelector('.site-header').offsetHeight;
-          const elementPosition = target.getBoundingClientRect().top + window.scrollY;
-          const offsetPosition = elementPosition - topOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-
-          mainNav.classList.remove('open');
-        }
-      });
-    });
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
