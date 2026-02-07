@@ -524,3 +524,11 @@ a {
 .press-link {
   margin-top: 8px;
 }
+
+.press-cover {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  display: block;
+}
