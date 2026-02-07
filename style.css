@@ -503,3 +503,24 @@ a {
   transform: scale(1.12);
   opacity: 0.8;
 }
+
+/* Vertical YouTube Shorts styling */
+.press-embed--shorts {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 9 / 16;
+}
+
+.press-embed--shorts iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 0;
+}
+
+.press-link {
+  margin-top: 8px;
+}
