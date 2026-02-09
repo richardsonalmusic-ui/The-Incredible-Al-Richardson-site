@@ -905,90 +905,81 @@ Only now I feel free
         </p>
       </div>
 
-      <form 
-  class="contact-form"
-  action="https://formspree.io/f/mjgekwep"
-  method="POST"
->
+      <!-- Formspree form (AJAX submission via script below) -->
+      <form
+        id="contactForm"
+        class="contact-form"
+        action="https://formspree.io/f/mjgekwep"
+        method="POST"
+      >
 
-  <label>
-    Name
-    <input type="text" name="name" required>
-  </label>
+        <label>
+          Name
+          <input type="text" name="name" required>
+        </label>
 
-  <label>
-    Email
-    <input type="email" name="email" required>
-  </label>
+        <label>
+          Email
+          <input type="email" name="email" required>
+        </label>
 
-  <label>
-    Message
-    <textarea name="message" rows="4" required></textarea>
-  </label>
+        <label>
+          Message
+          <textarea name="message" rows="4" required></textarea>
+        </label>
 
-  <!-- Subject line -->
-  <input
-    type="hidden"
-    name="_subject"
-    value="Booking enquiry — The Incredible Al Richardson"
-  >
+        <!-- Subject line -->
+        <input
+          type="hidden"
+          name="_subject"
+          value="Booking enquiry — The Incredible Al Richardson"
+        >
 
-  <!-- Reply-to configuration -->
-  <input
-    type="hidden"
-    name="_replyto"
-    value="%email%"
-  >
+        <button type="submit" class="btn primary" id="contactSubmitBtn">
+          Send message
+        </button>
 
-  <!-- Redirect back to your website -->
-  <input
-    type="hidden"
-    name="_next"
-    value="https://theincrediblealrichardson.ie/#contact"
-  >
+        <p class="form-note" id="contactFormNote">
+          Thanks — your message will be delivered directly.
+        </p>
 
-  <button type="submit" class="btn primary">
-    Send message
-  </button>
-
-  <p class="form-note">
-    Thanks — your message will be delivered directly.
-  </p>
-
-</form>
+      </form>
 
     </div>
   </div>
 </section>
+</main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> The Incredible Al Richardson</p>
-      <div class="footer-links">
-        <a href="https://open.spotify.com/artist/3gs87phRRPYDPcDlBGvKdJ?si=d6bFjuI8S6i92HvCmZio1g" target="_blank" rel="noopener">Spotify</a>
-        <a href="https://music.apple.com/ie/artist/al-richardson/1802065524" target="_blank" rel="noopener">Apple Music</a>
-        <a href="https://youtube.com/@alrichardson-k9x?si=1SgYpzEmsTmU-mRY" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://www.instagram.com/the.incredible_al_richardson?igsh=dHZhdTZya20yczB4&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
-      </div>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© <span id="year"></span> The Incredible Al Richardson</p>
+    <div class="footer-links">
+      <a href="https://open.spotify.com/artist/3gs87phRRPYDPcDlBGvKdJ?si=d6bFjuI8S6i92HvCmZio1g" target="_blank" rel="noopener">Spotify</a>
+      <a href="https://music.apple.com/ie/artist/al-richardson/1802065524" target="_blank" rel="noopener">Apple Music</a>
+      <a href="https://youtube.com/@alrichardson-k9x?si=1SgYpzEmsTmU-mRY" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/the.incredible_al_richardson?igsh=dHZhdTZya20yczB4&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
     </div>
-  </footer>
+  </div>
+</footer>
 
- <script>
+<script>
   // Run everything after the page has fully loaded
   window.addEventListener('load', () => {
     // --- SPLASH SCREEN FADE OUT ---
     const splash = document.getElementById('splash-screen');
     if (splash) {
-      const delay = 1200; // how long the logo stays fully visible (ms)
+      const delay = 400; // faster splash
+      setTimeout(() => splash.classList.add('splash-hide'), delay);
+
+      // failsafe remove (prevents getting stuck)
       setTimeout(() => {
-        splash.classList.add('splash-hide');
-      }, delay);
+        splash.style.display = 'none';
+      }, 3000);
     }
 
     // --- MOBILE NAV TOGGLE ---
     const navToggle = document.getElementById('navToggle');
     const mainNav = document.getElementById('mainNav');
-
     if (navToggle && mainNav) {
       navToggle.addEventListener('click', () => {
         mainNav.classList.toggle('open');
@@ -1009,48 +1000,77 @@ Only now I feel free
         const elementPosition = target.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition - topOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
 
-        if (mainNav) {
-          mainNav.classList.remove('open');
-        }
+        if (mainNav) mainNav.classList.remove('open');
       });
     });
 
     // --- FOOTER YEAR ---
     const yearEl = document.getElementById('year');
-    if (yearEl) {
-      yearEl.textContent = new Date().getFullYear();
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // --- CONTACT FORM (FORMSPREE AJAX SUBMIT — STAY ON SITE) ---
+    const contactForm = document.getElementById('contactForm');
+    const contactNote = document.getElementById('contactFormNote');
+    const contactBtn = document.getElementById('contactSubmitBtn');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (contactBtn) contactBtn.disabled = true;
+        if (contactNote) contactNote.textContent = 'Sending…';
+
+        try {
+          const formData = new FormData(contactForm);
+
+          const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            contactForm.reset();
+            if (contactNote) contactNote.textContent = 'Thanks — your message has been sent.';
+          } else {
+            if (contactNote) contactNote.textContent =
+              'Sorry — something went wrong. Please try again or email directly.';
+          }
+        } catch (err) {
+          if (contactNote) contactNote.textContent =
+            'Network error — please try again later.';
+        } finally {
+          if (contactBtn) contactBtn.disabled = false;
+        }
+      });
     }
   });
-   document.addEventListener('copy', function (e) {
+
+  // --- LYRICS COPY ATTRIBUTION ---
+  document.addEventListener('copy', function (e) {
     const selection = window.getSelection();
     if (!selection) return;
 
     const selectedText = selection.toString();
     if (!selectedText.trim()) return;
 
-    // Find the nearest heading to the lyrics block
     const lyricsBlock = selection.anchorNode?.parentElement?.closest('.lyrics-text');
     if (!lyricsBlock) return;
 
     const heading = lyricsBlock.previousElementSibling;
     if (!heading || !heading.classList.contains('lyrics-heading')) return;
 
-    // Extract the song title from the H3 text
-    // Expected format: Lyrics — “Song Name”
     const match = heading.textContent.match(/“([^”]+)”/);
     const songName = match ? match[1] : "Unknown Song";
 
     const attribution = ` — From the song “${songName}”, by The Incredible Al Richardson`;
 
-    // Override clipboard data
     e.preventDefault();
     e.clipboardData.setData('text/plain', selectedText + attribution);
-});
+  });
 </script>
+
 </body>
 </html>
