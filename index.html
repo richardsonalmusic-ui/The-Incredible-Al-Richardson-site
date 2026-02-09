@@ -906,49 +906,56 @@ Only now I feel free
       </div>
 
       <form 
-        class="contact-form"
-        action="https://formspree.io/f/mjgekwep"
-        method="POST"
-      >
+  class="contact-form"
+  action="https://formspree.io/f/mjgekwep"
+  method="POST"
+>
 
-        <label>
-          Name
-          <input type="text" name="name" required>
-        </label>
+  <label>
+    Name
+    <input type="text" name="name" required>
+  </label>
 
-        <label>
-          Email
-          <input type="email" name="email" required>
-        </label>
+  <label>
+    Email
+    <input type="email" name="email" required>
+  </label>
 
-        <label>
-          Message
-          <textarea name="message" rows="4" required></textarea>
-        </label>
+  <label>
+    Message
+    <textarea name="message" rows="4" required></textarea>
+  </label>
 
-        <!-- Subject line -->
-        <input 
-          type="hidden" 
-          name="_subject" 
-          value="Booking enquiry — The Incredible Al Richardson"
-        >
+  <!-- Subject line -->
+  <input
+    type="hidden"
+    name="_subject"
+    value="Booking enquiry — The Incredible Al Richardson"
+  >
 
-        <!-- Reply-to configuration -->
-        <input 
-          type="hidden" 
-          name="_replyto" 
-          value="%email%"
-        >
+  <!-- Reply-to configuration -->
+  <input
+    type="hidden"
+    name="_replyto"
+    value="%email%"
+  >
 
-        <button type="submit" class="btn primary">
-          Send message
-        </button>
+  <!-- Redirect back to your website -->
+  <input
+    type="hidden"
+    name="_next"
+    value="https://theincrediblealrichardson.ie/#contact"
+  >
 
-        <p class="form-note">
-          Your message will be delivered securely.
-        </p>
+  <button type="submit" class="btn primary">
+    Send message
+  </button>
 
-      </form>
+  <p class="form-note">
+    Thanks — your message will be delivered directly.
+  </p>
+
+</form>
 
     </div>
   </div>
