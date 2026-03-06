@@ -591,3 +591,24 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+.new-release {
+  padding: 3rem 0;
+}
+
+.new-release-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.new-release-embed iframe {
+  min-height: 352px;
+}
+
+@media (max-width: 900px) {
+  .new-release-inner {
+    grid-template-columns: 1fr;
+  }
+}
